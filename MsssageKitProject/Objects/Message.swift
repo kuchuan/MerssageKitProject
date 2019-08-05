@@ -9,8 +9,8 @@
 import MessageKit
 
 //一件のメッセージのデータを持つクラス
-class Message {
-    
+class Message: MessageType {
+
     //送信者
     let user: ChatUser
     
@@ -31,4 +31,15 @@ class Message {
         self.sentDate = sentDate
     }
     
+    var sender: SenderType {
+        return Sender(id: user.senderId, displayName: user.displayName)
+    }
+    
+    var kind: MessageKind{
+        return .text(text)
+    }
+    
+    
+    
 }
+
