@@ -10,11 +10,17 @@ import MessageKit
 
 class ChatUser: SenderType {
     
-    //ゆーざーID
+    //ユーザーID
     var senderId: String
     
-    //表示
+    //表示名
     var displayName: String
     
-    <#code#>
+    //コンストラクタ（クラスをインスタンス化するときに呼び出されるもの
+    //ChatUserを作るときは、必ずユーザーIDと表示名を設定するにようにする
+    init(senderId: String, displayName: String) {
+        self.senderId = senderId
+        self.displayName = displayName
+    }
+    
 }
