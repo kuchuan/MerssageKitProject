@@ -23,7 +23,7 @@ class Message: MessageType {
     //送信日付
     let sentDate: Date
     
-    //コンストラクタ
+    //コンストラクタ、***()が呼び出されたとき
     init(user: ChatUser, text: String, messageId: String, sentDate: Date) {
         self.user = user
         self.text = text
