@@ -23,6 +23,8 @@ class ViewController: MessagesViewController  {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        
+        messageInputBar.delegate = self
     }
 
 
@@ -63,6 +65,19 @@ extension ViewController: InputBarAccessoryViewDelegate {
         messageList.append(message)
         
         // 作成したメッセージを画面に追加
+        messagesCollectionView.insertSections([messageList.count - 1])
+        
+        
+        //入力バーのリセット
+        inputBar.inputTextView.text = ""
+        
+        //返信を作成（今日はいおくわかりません・・だけ）
+        let other = ChatUser(senderId: "9999", displayName: "UserName")
+        
+        let replyMessage = Message(user: other, text: "よくわかりません", messageId: UUID().uuidString, sentDate: Date())
+        
+        messageList.append(replyMessage)
+        
         messagesCollectionView.insertSections([messageList.count - 1])
     }
 }
