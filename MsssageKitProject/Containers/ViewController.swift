@@ -16,6 +16,9 @@ class ViewController: MessagesViewController  {
     //全メッセージを保持する配列
     var messageList: [Message] = []
     
+    //単独メッセージを保持する変数
+    var messageText: String = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,7 @@ extension ViewController: MessagesDataSource {
         return ChatUser(senderId: id, displayName: name)
     }
     
-    //ほ表示するメッセージの情報
+    //表示するメッセージの情報【メッセージきっと独特】
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messageList[indexPath.section] //メッセージを1件ずつ返してくれる
     }
@@ -62,6 +65,9 @@ extension ViewController: InputBarAccessoryViewDelegate {
         //メッセージの作成
         let message = Message(user: me, text: text, messageId: UUID().uuidString, sentDate: Date())
         
+        messageText = text
+//        print(messageText)
+        
         messageList.append(message)
         
         // 作成したメッセージを画面に追加
@@ -74,7 +80,7 @@ extension ViewController: InputBarAccessoryViewDelegate {
         //返信を作成（今日はいおくわかりません・・だけ）
         let other = ChatUser(senderId: "9999", displayName: "UserName")
         
-        let replyMessage = Message(user: other, text: "よくわかりません", messageId: UUID().uuidString, sentDate: Date())
+        let replyMessage = Message(user: other, text: "「\(messageText)」の意味がよくわかりません", messageId: UUID().uuidString, sentDate: Date())
         
         messageList.append(replyMessage)
         

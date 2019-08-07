@@ -31,6 +31,8 @@ class Message: MessageType {
         self.sentDate = sentDate
     }
     
+    
+    //messagekiの書き方
     var sender: SenderType {
         return Sender(id: user.senderId, displayName: user.displayName)
     }
